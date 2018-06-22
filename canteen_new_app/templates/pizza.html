@@ -1,0 +1,73 @@
+{% load static %}
+<html>
+    <head></head>
+    <title>Menu</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="/canteen_new_app/home/">Canteen</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li><a href="/canteen_new_app/home/">Home</a></li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Category<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+              <form action="/canteen_new_app/product_info/" method="post">{% csrf_token %}
+              <button type="submit" class="btn btn-default btn-block" name="pizza" value="pizza">pizza</button>
+              </form>
+              <form action="/canteen_new_app/sandwich/" method="post">{% csrf_token %}
+              <button type="submit" class="btn btn-default btn-block" name="sandwich" value="sandwich">sandwich</button>
+              </form>
+              <form action="/canteen_new_app/chinese/" method="post">{% csrf_token %}
+              <button type="submit" class="btn btn-default btn-block" name="chinese" value="chinese">chinese</button>
+              </form>
+          </ul>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+          <a href="/canteen_new_app/cart_display/" class="btn btn-info btn-lg">
+          <span class="glyphicon glyphicon-shopping-cart">({{count}})</span>
+        </a>
+        {% if request.user.is_authenticated %}
+            <li><a href="/canteen_new_app/logout/"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+        {% else %}
+            <li><a href="/canteen_new_app/login/"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+        {% endif %}
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <body>
+        <div class="container">  
+        <div class="table-responsive">          
+        <table class="table">
+        {% if product_item %}
+            {% for i in product_item %}
+                    <tr>
+                        <td width="20%"></td>
+                        <td width="20%" height="20%" style="align: center"><img src="{{i.link}}" class="img-thumbnail" alt="Cinque Terre"></td><td width="20%"></td>
+                        <td><p>{{i.product_name}}</p><br><p>Amount:{{i.price}}</p>
+                        <form action="/canteen_new_app/cart/" method="post">{% csrf_token %}
+                            <br>Quantity:<input type="number" name="quantity" value="1" min="1" style="width: 10%"><br>
+                            <br><button type="submit" value="Order Now" name="btn" class="btn btn-primary">Order Now</button></td>
+                            <input type="hidden" name="product_name" value="{{i.product_name}}">
+                            <input type="hidden" name="category" value="{{i.category}}">
+                        </form>
+                    </tr>
+            {% endfor %}
+        {% endif %}
+        </table>
+        </div>
+        </div>
+    </body>
+</html>

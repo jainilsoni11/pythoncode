@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+    <title>Cart</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <h1><center>Cart</center></h1>
+<body>
+
+<div class="container">  
+    <div class="table-responsive">          
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Item</th>
+        <th>Quantity</th>
+        <th>Price</th>
+        <th>Remove</th>
+      </tr>
+    </thead>
+      <tbody>
+      {% if data %}
+            {% for i in data %}
+                    <tr>
+                        <td>{{i.product_name}}</td>
+                        <td>{{i.quantity}}</td>
+                        <td>{{i.price}}</td>
+                        <td><form action="/canteen_new_app/remove/" method="post">{% csrf_token %}
+                            <input type="hidden" name="product_name" value="{{i.product_name}}">
+                            <input type="submit" name="remove" value="remove">
+                            </form>
+                        </td>
+                    </tr>
+            {% endfor %}
+        {% endif %}
+      </tbody>
+  </table>
+        
+  </div>
+    <table class="table">
+         <thead>
+         <tr class="info">
+            <td>Total Amount</td>
+            <td>{{total}}</td>
+        </tr>
+         </thead>
+    </table>
+</div>
+    <div class="container">
+        <table class="table">
+            <tr><td align="center">
+    <form action="/canteen_new_app/bill/" method="post">{% csrf_token %}
+        <button type="submit" class="btn btn-primary" name="placeorder" value="Confirm">Confirm</button>
+        <input type="hidden" name="amount" value="{{total}}">
+                </form></td></tr>
+    <tr><td align="center"><form action="/canteen_new_app/product_info/" method="post">{% csrf_token %}
+        <button type="submit" class="btn btn-primary" name="menu" value="Back To Menu">Back To Menu</button>
+        </form></td></tr>
+        </table>
+        <center><span class="label label-danger">{{msg}}</span></center>
+    </div>
+</body>
+</html>

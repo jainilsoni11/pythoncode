@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+    <title>Bill</title>
+    <h1><center>Bill</center></h1>
+<body>
+
+<div class="container">  
+    <div class="table-responsive">          
+  <table class="table">
+      <tbody>
+          <tr><td><h1>Order Summary</h1></td></tr>
+          <tr>
+            <th>Item</th>
+            <th>Quantity</th>
+            <th>Price</th>
+        </tr>
+          {% if order_items %}
+            {% for i in order_items %}
+                    <tr>
+                        <td>{{i.product_name}}</td>
+                        <td>{{i.quantity}}</td>
+                        <td>{{i.price}}</td>
+                    </tr>
+            {% endfor %}
+        {% endif %}
+      </tbody>
+        </table>
+        <table class="table">
+         <thead>
+         <tr class="info">
+            <td>Total Amount</td>
+            <td>{{total}}</td>
+             </tr>
+             <tr><td></td></tr>
+                <tr class="info">
+                    <td>OrderId</td>
+                    <td>{{orderId}}</td>
+                </tr>
+         </thead>
+    </table>
+    </div>
+    <div class="text-center">
+        <form action="/canteen_new_app/logout/" method="post">{% csrf_token %}
+            <button type="submit" class="btn btn-primary">logout</button>
+        </form>
+    </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,32 @@
+.navigation{
+    background-color: blue;
+    height: 80px;
+}
+.canteen_logo{
+    position: absolute;
+    overflow: hidden;
+    margin: 10px 50px;
+    height: 60px;
+}
+.menu{
+    float: right;
+    list-style: none;
+    margin: 20px;
+}
+.menu li{
+    display:inline-block;
+    margin: 10px 5px;
+}
+.menu li a{
+    text-decoration: none;
+    color: #fff;
+    padding: 5px 10px;
+    font-family: sans-serif;
+    letter-spacing: 2px;
+    border-bottom: 1px solid #fff;
+}
+.menu li a:hover{
+    background-color: skyblue;
+    border-bottom: 1px solid coral;
+    transition: .4s;
+}

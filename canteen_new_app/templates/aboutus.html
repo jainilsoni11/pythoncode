@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+    <title>AboutUS</title>
+    <h1><center>About Us</center></h1>
+<body>
+
+<div class="container">  
+    <div class="table-responsive">          
+  <table class="table">
+      <tr><td><h1>Developers</h1></td></tr>
+      <tr><td><b>1.</b></td></tr>
+      <tr>
+          <td><b>Name:</b></td>
+          <td>Jainil Barbhaya</td>
+      </tr>
+      <tr>
+          <td><b>Branch:</b></td>
+          <td>Computer Engineering</td>
+      </tr>
+      <tr>
+          <td><b>Rollno:</b></td>
+          <td>CE-07</td>
+      </tr>
+      <tr>
+          <td><b>Sem:</b></td>
+          <td>4</td>
+      </tr>
+    </table>
+    </div>
+    <div class="text-center">
+        <form action="/canteen_new_app/home/" method="post">{% csrf_token %}
+            <button type="submit" class="btn btn-primary">Home</button>
+        </form>
+    </div>
+    </div>
+</body>
+</html>
